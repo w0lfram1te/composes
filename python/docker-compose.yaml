@@ -1,0 +1,6 @@
+services:
+  app:
+    build: .
+    command: python3 /home/main.py
+    volumes: 
+      - ${PWD}:/home/
