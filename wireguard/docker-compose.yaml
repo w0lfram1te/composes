@@ -25,4 +25,14 @@ services:
       - 51820:51820/udp
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv4.ip_forward=1
     restart: unless-stopped
+    networks:
+      wireguard:
+        ipv4_address: 192.168.0.2
+
+networks:
+  wireguard:
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
