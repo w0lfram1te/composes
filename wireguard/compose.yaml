@@ -7,15 +7,17 @@ services:
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
+    env_file:
+      - .env
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Manila
-      - SERVERURL=example.domain.com
+      # - SERVERURL=example.domain.com
       - SERVERPORT=51820 
-      - PEERS=peer1,peer2,peer3
+      # - PEERS=peer1,peer2,peer3
       - PEERDNS=auto
-      - INTERNAL_SUBNET=10.9.9.0 
+      - INTERNAL_SUBNET=10.0.0.0 
       - ALLOWEDIPS=0.0.0.0/0 
       - LOG_CONFS=true
     volumes:
@@ -28,11 +30,12 @@ services:
       - net.ipv4.ip_forward=1
     restart: unless-stopped
     networks:
-      wireguard:
-        ipv4_address: 192.168.0.2
+      default:
+        ipv4_address: 192.168.1.2
 
 networks:
-  wireguard:
+  default:
+    driver: bridge
     ipam:
       config:
-        - subnet: 192.168.0.0/24
+        - subnet: 192.168.1.0/24
