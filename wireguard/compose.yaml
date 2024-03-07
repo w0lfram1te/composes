@@ -8,7 +8,7 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     env_file:
-      - .env
+      - ${PWD}/.env
     environment:
       - PUID=1000
       - PGID=1000
