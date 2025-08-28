@@ -10,3 +10,5 @@
 # NOTE: does not work with current implementation. dependent on compose execution location.
 docker compose -f {folder}/compose.yaml -f {folder}/compose.yaml up
 ```
+
+Requires docker-compose 2.30.0 and up to support the `post_start` field.
