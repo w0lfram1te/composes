@@ -1,0 +1,5 @@
+config/coredns/
+config/peer_*/
+config/server/
+config/wg_confs/
+.donoteditthisfile

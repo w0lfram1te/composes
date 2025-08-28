@@ -1,5 +1,4 @@
 ---
-version: "2.1"
 services:
   wireguard:
     image: lscr.io/linuxserver/wireguard:latest
@@ -14,11 +13,12 @@ services:
       - PGID=1000
       - TZ=Asia/Manila
       # - SERVERURL=example.domain.com
-      - SERVERPORT=51820 
+      - SERVERPORT=51820
       # - PEERS=peer1,peer2,peer3
-      - PEERDNS=auto
-      - INTERNAL_SUBNET=10.0.0.0 
-      - ALLOWEDIPS=0.0.0.0/0 
+      - PEERDNS=172.19.0.3
+      - INTERNAL_SUBNET=172.19.1.0/24
+      - ALLOWEDIPS=0.0.0.0/0,::0/0
+      - PERSISTENTKEEPALIVE_PEERS=all
       - LOG_CONFS=true
     volumes:
       - ${PWD}/config:/config
@@ -31,11 +31,12 @@ services:
     restart: unless-stopped
     networks:
       default:
-        ipv4_address: 192.168.1.2
+        ipv4_address: 172.19.0.2
 
 networks:
   default:
     driver: bridge
     ipam:
       config:
-        - subnet: 192.168.1.0/24
+        - subnet: 172.19.0.0/24
+          gateway: 172.19.0.1
