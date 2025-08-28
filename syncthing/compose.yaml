@@ -16,7 +16,7 @@ services:
     volumes:
       # - $PWD/data:/var/syncthing
       - /srv/syncthing:/var/syncthing
-    ports:
+    ports: []
       # - 8384:8384 # Web UI
       # - 22000:22000/tcp # TCP file transfers
       # - 22000:22000/udp # QUIC file transfers
