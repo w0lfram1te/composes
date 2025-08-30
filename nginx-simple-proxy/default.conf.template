@@ -1,0 +1,6 @@
+server {
+    server_name sheets.${DOMAIN};
+    location / {
+        proxy_pass  http://grist:8484;
+    }
+}

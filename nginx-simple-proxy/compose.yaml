@@ -1,0 +1,22 @@
+---
+services:
+  proxy:
+    container_name: nginx
+    image: nginx:alpine
+    volumes:
+    - ${PWD}/default.conf.template:/etc/nginx/templates/default.conf.template:ro
+    # - {PWD}/nginx.conf:/etc/nginx/nginx.conf:ro
+    cap_add:
+    - NET_ADMIN
+    restart: unless-stopped
+    networks:
+      default:
+        ipv4_address: 172.19.0.5
+    post_start:
+    - command: ip route add 172.19.1.0/24 via 172.19.0.2
+      user: root
+
+networks:
+  default:
+    name: wireguard_default
+    external: true
