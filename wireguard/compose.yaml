@@ -7,7 +7,7 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     env_file:
-      - ${PWD}/.env
+      - ./.env
     environment:
       - PUID=1000
       - PGID=1000
@@ -21,8 +21,8 @@ services:
       - PERSISTENTKEEPALIVE_PEERS=all
       - LOG_CONFS=true
     volumes:
-      - ${PWD}/config:/config
-      - ${PWD}/modules:/lib/modules
+      - ./config:/config
+      - ./modules:/lib/modules
     ports:
       - 51820:51820/udp
     sysctls:

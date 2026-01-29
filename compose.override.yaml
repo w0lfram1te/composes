@@ -1,0 +1,38 @@
+---
+services:
+  dns:
+    cap_add:
+    - NET_ADMIN
+    networks:
+      default:
+        ipv4_address: 172.19.0.3
+    post_start:
+    - command: ip route add 172.19.1.0/24 via 172.19.0.2
+      user: root
+
+  sync:
+    cap_add:
+    - NET_ADMIN
+    networks:
+      default:
+        ipv4_address: 172.19.0.4
+    post_start:
+    - command: ip route add 172.19.1.0/24 via 172.19.0.2
+      user: root
+    volumes:
+    - /srv/syncthing:/var/syncthing
+
+  proxy:
+    cap_add:
+    - NET_ADMIN
+    networks:
+      default:
+        ipv4_address: 172.19.0.5
+    post_start:
+    - command: ip route add 172.19.1.0/24 via 172.19.0.2
+      user: root
+
+  sheets:
+    networks:
+      default:
+        ipv4_address: 172.19.0.6

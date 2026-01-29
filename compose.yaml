@@ -1,0 +1,6 @@
+include:
+- ./wireguard/compose.yaml
+- ./pihole/compose.yaml
+- ./syncthing/compose.yaml
+- ./nginx-simple-proxy/compose.yaml
+- ./grist/compose.yaml

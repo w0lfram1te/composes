@@ -1,0 +1,13 @@
+---
+services:
+  sheets:
+    container_name: grist
+    image: gristlabs/grist-oss:latest
+    env_file:
+      - ./.env
+    volumes:
+      # Where to store persistent data, such as documents.
+      - ${PERSIST_DIR:-./persist}/grist:/persist
+    ports: []
+      # - 8484:8484
+    restart: unless-stopped
