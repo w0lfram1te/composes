@@ -3,6 +3,8 @@ services:
   dns:
     cap_add:
     - NET_ADMIN
+    env_file:
+      - ./.env.dns
     networks:
       default:
         ipv4_address: 172.19.0.3
@@ -33,6 +35,8 @@ services:
       user: root
 
   sheets:
+    env_file:
+      - ./.env.sheets
     networks:
       default:
         ipv4_address: 172.19.0.6
