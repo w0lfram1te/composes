@@ -1,7 +1,40 @@
 server {
+    server_name sheets.${DOMAIN}.arpa;
+    location / {
+        return 301 http://sheets.${DOMAIN};
+    }
+}
+
+server {
     server_name sheets.${DOMAIN};
     location / {
         proxy_pass  http://grist:8484;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+server {
+    server_name sync.${DOMAIN};
+    location / {
+        proxy_pass  https://syncthing:8384;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+server {
+    server_name dns.${DOMAIN};
+    location / {
+        return 301 http://dns.${DOMAIN}/admin;
+    }
+    server_name dns.${DOMAIN};
+    location /admin {
+        proxy_pass  http://pihole/admin;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
