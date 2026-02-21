@@ -7,7 +7,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - STGUIADDRESS=
+      - STGUIADDRESS=127.0.0.1
     volumes:
       - ./data:/var/syncthing
     ports: []

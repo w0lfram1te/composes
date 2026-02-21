@@ -19,6 +19,8 @@ services:
   sync:
     cap_add:
     - NET_ADMIN
+    env_file:
+      - ./.env.sync
     networks:
       default:
         ipv4_address: 172.19.0.4
