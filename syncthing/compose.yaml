@@ -4,10 +4,8 @@ services:
     container_name: syncthing
     image: syncthing/syncthing
     hostname: hostname
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - STGUIADDRESS=127.0.0.1
+    env_file:
+    - .env
     volumes:
       - ./data:/var/syncthing
     ports: []
