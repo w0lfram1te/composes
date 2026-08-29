@@ -2,7 +2,7 @@
 services:
   dns:
     container_name: pihole
-    image: pihole/pihole:latest
+    image: pihole/pihole@sha256:f7d1be836e3bc608b56d82fc9904f5a831cdfbc0dc9c6d58f94e4c985c70038b # pihole/pihole:2026.07.2
     # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
     ports: []
       # - "53:53/tcp"
@@ -13,7 +13,9 @@ services:
       - ./.env
     environment:
       TZ: 'Asia/Manila'
-      # WEBPASSWORD: 'set a secure password here or it will be random'
+      FTLCONF_dns_listeningMode: 'ALL'
+      FTLCONF_dns_upstreams: '8.8.8.8;8.8.4.4;1.1.1.1;9.9.9.9'
+      # FTLCONF_webserver_api_password:: 'set a secure password here or it will be random'
     # Volumes store your data between container upgrades
     volumes:
       - ./etc-pihole:/etc/pihole
