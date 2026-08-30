@@ -1,12 +1,12 @@
 server {
-    server_name sheets.${DOMAIN}.arpa;
+    server_name sheets.${NGINX_HOST}.arpa;
     location / {
-        return 301 http://sheets.${DOMAIN};
+        return 301 http://sheets.${NGINX_HOST};
     }
 }
 
 server {
-    server_name sheets.${DOMAIN};
+    server_name sheets.${NGINX_HOST};
     location / {
         proxy_pass  http://grist:8484;
         proxy_set_header Upgrade $http_upgrade;
@@ -17,7 +17,7 @@ server {
 }
 
 server {
-    server_name sync.${DOMAIN};
+    server_name sync.${NGINX_HOST};
     location / {
         proxy_pass  https://syncthing:8384;
         proxy_set_header Upgrade $http_upgrade;
@@ -28,13 +28,13 @@ server {
 }
 
 server {
-    server_name dns.${DOMAIN};
-    location / {
-        return 301 http://dns.${DOMAIN}/admin;
+    server_name dns.${NGINX_HOST};
+    location ^/$ {
+        return 301 http://pihole/admin;
     }
-    server_name dns.${DOMAIN};
-    location /admin {
-        proxy_pass  http://pihole/admin;
+    server_name dns.${NGINX_HOST};
+    location / {
+        proxy_pass  http://pihole/;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
