@@ -1,1 +1,7 @@
 .env.*
+
+# persistence folders
+grist/persist/*
+pihole/etc-pihole/*
+pihole/etc-dnsmasq.d/*
+wireguard/config/*
