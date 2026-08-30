@@ -2,7 +2,7 @@
 services:
   sheets:
     container_name: grist
-    image: gristlabs/grist-oss:latest
+    image: gristlabs/grist-oss:1.7.17
     env_file:
       - ./.env
     volumes:
