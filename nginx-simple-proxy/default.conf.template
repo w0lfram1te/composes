@@ -30,7 +30,7 @@ server {
 server {
     server_name dns.${NGINX_HOST};
     location ^/$ {
-        return 301 http://pihole/admin;
+        return 301 http://dns.${NGINX_HOST}/admin;
     }
     server_name dns.${NGINX_HOST};
     location / {
