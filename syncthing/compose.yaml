@@ -2,7 +2,7 @@
 services:
   sync:
     container_name: syncthing
-    image: syncthing/syncthing
+    image: syncthing/syncthing:2.1.4
     hostname: hostname
     env_file:
     - .env
